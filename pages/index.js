@@ -6,19 +6,36 @@ export async function getStaticProps() {
 }
 
 export default function Home({ countries }) {
-   if(!countries){
+  console.log(countries);
+  if (!countries) {
     return null;
-   }
+  }
   return (
-    <>
-      <div>
-      <ul className="text-black">
-        {countries.map((country, index) => (
-          <li key={index}>{country.name.common}</li>
-        ))}
-      </ul>
     
-      </div>
-    </>
+      <main >
+        <div  className="grid-container">
+          {countries.map((country, index) => (
+            <div key={index} className="card">
+              <div className="card-img">
+                <img src={country.flags.png} alt={country.name.common} height="auto" />
+              </div>
+
+              <h1>{country.name.common}</h1>
+              <div className="flex flex-col items-center justify-center">
+                <span>
+                  <b>Population</b> : {country.population}
+                </span>
+                <span>
+                  <b>Region</b> : {country.region}
+                </span>
+                <span>
+                  <b>Capital</b> : {country.capital}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </main>
+    
   );
 }
